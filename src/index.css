@@ -24,6 +24,45 @@ code {
   background-color: rgb(72, 35, 171);
 }
 
+.nav_popcorn {
+  width: 100%;
+}
+
+.nav_popcorn_div {
+  width: 4em;
+  padding: 0.5em;
+}
+
+#navbar {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: auto;
+  margin-top: auto;
+}
+
+#navbar h5, #navbar h1, #navbar input, .nav_button_div {  
+    margin-top: auto;
+}
+
+.nav_button_div {
+  margin-bottom: 0.4em;
+  margin-left: -1em;
+}
+
+.nav_input {
+  margin-bottom: 0.4em;
+}
+
+#coming_soon {
+  margin-left: 0.5em;
+}
+
+#collections {
+  margin-right: 0.5em;
+}
+
 /* .App {
   position: fixed;
   width: 100%;
