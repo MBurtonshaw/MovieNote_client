@@ -1,12 +1,16 @@
 import { useContext } from 'react';
-import { ScreenContext } from '../contexts/ScreenContext.js';
+import { MovieContext } from '../contexts/MovieContext.js';
 
 function Home() {
 
-    const { width } = useContext(ScreenContext);
+    const { movies } = useContext(MovieContext);
 
-    if (width) {
+    if (movies) {
         return (
+            <h1 className='text-center mt-5'>Home</h1>
+        );
+    } else {
+        return(
             <h1 className='text-center mt-5'>Home</h1>
         );
     }

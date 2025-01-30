@@ -2,7 +2,7 @@ import React, { createContext, useState, useEffect } from "react";
 
 export const ScreenContext = createContext();
 
-export const Provider = ({ children }) => {
+export const ScreenProvider = ({ children }) => {
   const [width, setWidth] = useState(window.innerWidth);
 
   useEffect(() => {

@@ -1,9 +1,11 @@
 import { useContext, useState, useEffect } from 'react';
 import { ScreenContext } from '../contexts/ScreenContext.js';
+import { UserContext } from '../contexts/UserContext.js';
 
 function Navbar() {
     const [size, setSize] = useState(null);
     const { width } = useContext(ScreenContext);
+    const { user } = useContext(UserContext);
 
     useEffect(() => {
         let newSize = null;
