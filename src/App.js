@@ -1,7 +1,9 @@
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import Collection from './components/Collection';
-import Genre from './components/Genre';
+import Genres from './components/Genres';
+import GenreFilms from './components/GenreFilms';
+import ComingSoon from './components/ComingSoon';
 import { Routes, Route } from "react-router-dom";
 import { ScreenProvider } from "./contexts/ScreenContext";
 import { UserProvider } from "./contexts/UserContext";
@@ -16,7 +18,9 @@ function App() {
             <Navbar />
             <Routes>
               <Route path='/' element={<Home />} />
-              <Route path='/genre' element={<Genre />} />
+              <Route path='/coming_soon' element={<ComingSoon />} />
+              <Route path='/genres' element={<Genres />} />
+              <Route path='/genres/:genre' element={<GenreFilms />} />
               <Route path='/collection' element={<Collection />} />
             </Routes>
           </ScreenProvider>

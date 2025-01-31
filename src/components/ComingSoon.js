@@ -1,16 +1,16 @@
 import { useState, useEffect, useContext } from "react";
 import { MovieContext } from "../contexts/MovieContext.js";
 
-function Home() {
+function ComingSoon() {
     const { movies, actions } = useContext(MovieContext);
 
     useEffect(() => {
         if (!movies) { // Ensures we only fetch if movies haven't been loaded
-            actions.getNowPlaying();
+            actions.getComingSoon();
         }
     }, [movies, actions]);
 
-    function nowPlayingMapper() {
+    function comingSoonMapper() {
         if (movies) {
             return (
                 movies.map((movie, i) => {
@@ -23,8 +23,8 @@ function Home() {
     if (movies) {
         return (
             <div>
-                <h1 className="text-center mt-5">Now Playing</h1>
-                {nowPlayingMapper()}
+                <h1 className="text-center mt-5">Coming Soon</h1>
+                {comingSoonMapper()}
             </div>
         );
     } else {
@@ -35,4 +35,4 @@ function Home() {
 
 }
 
-export default Home;
+export default ComingSoon;
