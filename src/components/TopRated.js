@@ -3,16 +3,16 @@ import { MovieContext } from "../contexts/MovieContext.js";
 import NotFound from '../components/NotFound';
 import Loading from '../components/Loading';
 
-function Home() {
+function TopRated() {
     const { movies, actions } = useContext(MovieContext);
 
     useEffect(() => {
         if (!movies) { // Ensures we only fetch if movies haven't been loaded
-            actions.getNowPlaying();
+            actions.getTopRated();
         }
     }, [movies, actions]);
 
-    function nowPlayingMapper() {
+    function topRatedMapper() {
         if (movies) {
             return (
                 movies.map((movie, i) => {
@@ -20,17 +20,17 @@ function Home() {
                 })
             );
         } else {
-            return(
+            return (
                 <NotFound />
-            );
+            )
         }
     }
 
     if (movies) {
         return (
             <div>
-                <h1 className="text-center mt-5">Now Playing</h1>
-                {nowPlayingMapper()}
+                <h1 className="text-center mt-5">Top Rated</h1>
+                {topRatedMapper()}
             </div>
         );
     } else {
@@ -41,4 +41,4 @@ function Home() {
 
 }
 
-export default Home;
+export default TopRated;

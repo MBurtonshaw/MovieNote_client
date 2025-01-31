@@ -1,5 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { MovieContext } from "../contexts/MovieContext.js";
+import NotFound from '../components/NotFound';
+import Loading from '../components/Loading';
 
 function ComingSoon() {
     const { movies, actions } = useContext(MovieContext);
@@ -17,6 +19,10 @@ function ComingSoon() {
                     return <h5 key={i} >{movie.title}</h5>
                 })
             );
+        } else {
+            return (
+                <NotFound />
+            )
         }
     }
 
@@ -29,10 +35,9 @@ function ComingSoon() {
         );
     } else {
         return (
-            <h1 className="text-center mt-5">...Loading...</h1>
+            <Loading />
         )
     }
-
 }
 
 export default ComingSoon;

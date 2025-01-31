@@ -46,4 +46,19 @@ export default class Data {
     return movieList;
   }
 
+  async getMoviesByGenre(genre) {
+    const movieList = await this.api(`movies/genres/${genre}`, 'GET');
+    return movieList;
+  }
+
+  async getTopRated() {
+    const movieList = await this.api(`movies/top_rated`, 'GET');
+    return movieList;
+  }
+
+  async search(query) {
+    const movieList = await this.api(`movies/search/${query}`, 'GET');
+    return movieList;
+  }
+
 }

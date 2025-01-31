@@ -1,11 +1,16 @@
 import { useContext, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ScreenContext } from '../contexts/ScreenContext.js';
 import { UserContext } from '../contexts/UserContext.js';
+import { MovieContext } from '../contexts/MovieContext.js';
 
 function Navbar() {
     const [size, setSize] = useState(null);
     const { width } = useContext(ScreenContext);
+    const { actions } = useContext(MovieContext);
     const { user } = useContext(UserContext);
+    const [query, setQuery] = useState('');
+    const navigate = useNavigate();
 
     useEffect(() => {
         let newSize = null;
@@ -21,27 +26,38 @@ function Navbar() {
             newSize = 'mobile';
         }
 
-        // Only update state if `size` is actually changing
         if (size !== newSize) {
             setSize(newSize);
         }
-    }, [width, size]); // Added `size` to the dependency array
+    }, [width, size]);
+
+    // Update the query state on input change
+    const handleSearchChange = (e) => {
+        setQuery(e.target.value);
+    };
+
+    // Function to execute the search
+    function execute_search(query) {
+        actions.searchMovies(query);
+        navigate(`/search/${query}`);
+    }
 
     if (size === 'large') {
         return (
             <div id={`navbar_${size}`}>
                 <h1 className={`title_${size}`}>MovieNote</h1>
-                <h5 id={`coming_soon_${size}`}>Coming Soon</h5>
+                <h5 className={`new_releases_${size}`}><a href='/'>New Releases</a></h5>
                 <h5>|</h5>
-                <h5 className={`new_releases_${size}`}>New Releases</h5>
+                <h5 id={`coming_soon_${size}`}><a href='/coming_soon'>Coming Soon</a></h5>
                 <h5>|</h5>
-                <h5 className={`by_genre_${size}`}>By Genre</h5>
+                <h5 id={`collections_${size}`}><a href='/top_rated'>Top Rated</a></h5>
                 <h5>|</h5>
-                <h5 id={`collections_${size}`}>Collections</h5>
+                <h5 className={`by_genre_${size}`}><a href='/genres'>By Genre</a></h5>
                 <div className={`nav_input_div`}>
-                    <input className={`nav_input_${size}`} type='text' placeholder='Search' />
+                    <input id='searchbar' className={`nav_input_${size}`} type='text' placeholder='Search'
+                        value={query} onChange={handleSearchChange} />
                     <div className={`nav_button_div_${size}`}>
-                        <button className={`nav_button_${size}`}>Go</button>
+                        <button className={`nav_button_${size}`} onClick={() => execute_search(query)} >Go</button>
                     </div>
                 </div>
                 <div className={`nav_popcorn_div_${size}`}>
@@ -68,15 +84,16 @@ function Navbar() {
                     <ul className="dropdown-menu">
                         <li><a className="dropdown-item" href="/">Home</a></li>
                         <li><a className="dropdown-item" href="/">Now Playing</a></li>
-                        <li><a className="dropdown-item" href="/">Coming Soon</a></li>
+                        <li><a className="dropdown-item" href="/coming_soon">Coming Soon</a></li>
+                        <li><a className='dropdown-item' href='/top_rated'>Top Rated</a></li>
                         <li><a className="dropdown-item" href="/genre">By Genre</a></li>
-                        <li><a className="dropdown-item" href="/collection">Collections</a></li>
                     </ul>
                 </div>
                 <div className={`nav_input_div`}>
-                    <input className={`nav_input_${size}`} type='text' placeholder='Search' />
+                    <input id='searchbar' className={`nav_input_${size}`} type='text' placeholder='Search'
+                        value={query} onChange={handleSearchChange} />
                     <div className={`nav_button_div_${size}`}>
-                        <button className={`nav_button_${size}`}>Go</button>
+                        <button className={`nav_button_${size}`} onClick={() => execute_search(query)} >Go</button>
                     </div>
                 </div>
                 <div className={`nav_popcorn_div_${size}`}>
@@ -104,14 +121,15 @@ function Navbar() {
                         <li><a className="dropdown-item" href="/">Home</a></li>
                         <li><a className="dropdown-item" href="/">Now Playing</a></li>
                         <li><a className="dropdown-item" href="/">Coming Soon</a></li>
+                        <li><a className='dropdown-item' href='/top_rated'>Top Rated</a></li>
                         <li><a className="dropdown-item" href="/genre">By Genre</a></li>
-                        <li><a className="dropdown-item" href="/collection">Collections</a></li>
                     </ul>
                 </div>
                 <div className={`nav_input_div`}>
-                    <input className={`nav_input_${size}`} type='text' placeholder='Search' />
+                    <input id='searchbar' className={`nav_input_${size}`} type='text' placeholder='Search'
+                        value={query} onChange={handleSearchChange} />
                     <div className={`nav_button_div_${size}`}>
-                        <button className={`nav_button_${size}`}>Go</button>
+                        <button className={`nav_button_${size}`} onClick={() => execute_search(query)} >Go</button>
                     </div>
                 </div>
                 <div className={`nav_popcorn_div_${size}`}>
@@ -147,14 +165,15 @@ function Navbar() {
                         <li><a className="dropdown-item" href="/">Home</a></li>
                         <li><a className="dropdown-item" href="/">Now Playing</a></li>
                         <li><a className="dropdown-item" href="/">Coming Soon</a></li>
+                        <li><a className='dropdown-item' href='/top_rated'>Top Rated</a></li>
                         <li><a className="dropdown-item" href="/genre">By Genre</a></li>
-                        <li><a className="dropdown-item" href="/collection">Collections</a></li>
                     </ul>
                 </div>
                 <div className={`nav_input_div`}>
-                    <input className={`nav_input_${size}`} type='text' placeholder='Search' />
+                    <input id='searchbar' className={`nav_input_${size}`} type='text' placeholder='Search'
+                        value={query} onChange={handleSearchChange} />
                     <div className={`nav_button_div_${size}`}>
-                        <button className={`nav_button_${size}`}>Go</button>
+                        <button className={`nav_button_${size}`} onClick={() => execute_search(query)} >Go</button>
                     </div>
                 </div>
                 <div className='d-flex'>
@@ -191,8 +210,8 @@ function Navbar() {
                             <li><a className="dropdown-item" href="/">Home</a></li>
                             <li><a className="dropdown-item" href="/">Now Playing</a></li>
                             <li><a className="dropdown-item" href="/">Coming Soon</a></li>
+                            <li><a className='dropdown-item' href='/top_rated'>Top Rated</a></li>
                             <li><a className="dropdown-item" href="/genre">By Genre</a></li>
-                            <li><a className="dropdown-item" href="/collection">Collections</a></li>
                         </ul>
                     </div>
                     <div className={`nav_input_div_${size} dropdown`}>
@@ -200,7 +219,11 @@ function Navbar() {
                             <img className="w-100" src="/images/icons/magnifying_glass.png" alt="Search" />
                         </div>
                         <div className="dropdown-menu p-2" data-bs-auto-close="false">
-                            <input className="form-control" type="text" placeholder="Search..." />
+                            <input id='searchbar' className={`nav_input_${size}`} type='text' placeholder='Search'
+                                value={query} onChange={handleSearchChange} />
+                            <div className={`nav_button_div_${size}`}>
+                                <button className={`nav_button_${size}`} onClick={() => execute_search(query)} >Go</button>
+                            </div>
                         </div>
                     </div>
                     <div className={`user_icon_link_${size} dropdown`}>

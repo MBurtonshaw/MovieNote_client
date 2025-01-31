@@ -28,11 +28,7 @@ code {
   background-color: rgb(72, 35, 171);
 }
 
-#collections_large {
-  margin-right: 0.5em;
-}
-
-#coming_soon_large {
+.new_releases_large {
   margin-left: 0.5em;
 }
 

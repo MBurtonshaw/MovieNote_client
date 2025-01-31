@@ -30,12 +30,54 @@ export const MovieProvider = ({ children }) => {
     }
   };
 
+  const getMoviesByGenre = async (genre) => {
+    try {
+      const moviesList = await data.getMoviesByGenre(genre);
+      setMovies(moviesList);
+      setError(null); 
+    } catch (error) {
+      console.error("Error fetching upcoming movies:", error);
+      setError(error.message || "Failed to load movies.");
+    }
+  };
+
+  const getTopRated = async () => {
+    try {
+      const moviesList = await data.getTopRated();
+      setMovies(moviesList);
+      setError(null); 
+    } catch (error) {
+      console.error("Error fetching upcoming movies:", error);
+      setError(error.message || "Failed to load movies.");
+    }
+  };
+
+  const searchMovies = async (query) => {
+    try {
+      const moviesList = await data.search(query);
+      setMovies(moviesList);
+      setError(null); 
+    } catch (error) {
+      console.error("Error fetching upcoming movies:", error);
+      setError(error.message || "Failed to load movies.");
+    }
+  };
+
+  function capitalizeFirstLetter(val) {
+    return String(val).charAt(0).toUpperCase() + String(val).slice(1);
+}
+
+
   const value = {
     movies,
     error,
     actions: {
         getNowPlaying,
-        getComingSoon
+        getComingSoon,
+        capitalizeFirstLetter,
+        getMoviesByGenre,
+        getTopRated,
+        searchMovies
     }
   };
 

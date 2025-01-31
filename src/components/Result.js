@@ -3,17 +3,11 @@ import { MovieContext } from "../contexts/MovieContext.js";
 import NotFound from '../components/NotFound';
 import Loading from '../components/Loading';
 
-function Home() {
+function Result() {
     const { movies, actions } = useContext(MovieContext);
 
-    useEffect(() => {
-        if (!movies) { // Ensures we only fetch if movies haven't been loaded
-            actions.getNowPlaying();
-        }
-    }, [movies, actions]);
-
-    function nowPlayingMapper() {
-        if (movies) {
+    function resultMapper() {
+        if (movies.length > 0) {
             return (
                 movies.map((movie, i) => {
                     return <h5 key={i} >{movie.title}</h5>
@@ -29,8 +23,8 @@ function Home() {
     if (movies) {
         return (
             <div>
-                <h1 className="text-center mt-5">Now Playing</h1>
-                {nowPlayingMapper()}
+                <h1 className="text-center mt-5">Results</h1>
+                {resultMapper()}
             </div>
         );
     } else {
@@ -41,4 +35,4 @@ function Home() {
 
 }
 
-export default Home;
+export default Result;

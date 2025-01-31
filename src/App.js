@@ -1,6 +1,7 @@
 import Navbar from './components/Navbar';
 import Home from './components/Home';
-import Collection from './components/Collection';
+import Result from './components/Result';
+import TopRated from './components/TopRated';
 import Genres from './components/Genres';
 import GenreFilms from './components/GenreFilms';
 import ComingSoon from './components/ComingSoon';
@@ -19,9 +20,10 @@ function App() {
             <Routes>
               <Route path='/' element={<Home />} />
               <Route path='/coming_soon' element={<ComingSoon />} />
+              <Route path='/top_rated' element={<TopRated />} />
               <Route path='/genres' element={<Genres />} />
               <Route path='/genres/:genre' element={<GenreFilms />} />
-              <Route path='/collection' element={<Collection />} />
+              <Route path='/search/:query' element={<Result />} />
             </Routes>
           </ScreenProvider>
         </MovieProvider>
