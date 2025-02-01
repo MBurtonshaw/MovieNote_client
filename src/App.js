@@ -8,6 +8,8 @@ import ComingSoon from './components/ComingSoon';
 import Login from './components/Login';
 import Logout from './components/Logout';
 import Register from './components/Register';
+import Title from './components/Title';
+import List from './components/List';
 import { Routes, Route } from "react-router-dom";
 import { ScreenProvider } from "./contexts/ScreenContext";
 import { UserProvider } from "./contexts/UserContext";
@@ -29,7 +31,9 @@ function App() {
               <Route path='/search/:query' element={<Result />} />
               <Route path='/login' element={<Login />} />
               <Route path='/logout' element={<Logout />} />
-              <Route path='/registration' element={<Register />} />
+              <Route path='/register' element={<Register />} />
+              <Route path='/title/:id' element={<Title />} />
+              <Route path='/list' element={<List />} />
             </Routes>
           </ScreenProvider>
         </MovieProvider>

@@ -18,36 +18,36 @@ function GenreFilms() {
         }
         return actions.capitalizeFirstLetter(style);
     }
-    
-        useEffect(() => {
-            if (!movies) { // Ensures we only fetch if movies haven't been loaded
-                actions.getMoviesByGenre(genre);
-            }
-        }, [movies, actions]);
 
-        function movie_mapper() {
-            if (movies) {
-                return movies.map(
-                    (movie, i) => {
-                        return <h5 key={i}>{movie.title}</h5>
-                    }
-                );
-            } else {
-                return(
-                    <NotFound />
-                );
-            }
+    useEffect(() => {
+        if (!movies) { // Ensures we only fetch if movies haven't been loaded
+            actions.getMoviesByGenre(genre);
         }
+    }, [movies, actions]);
+
+    function movie_mapper() {
+        if (movies) {
+            return movies.map(
+                (movie, i) => {
+                    return <h5 key={i}><a href={`/title/${movie.id}`}>{movie.title}</a></h5>
+                }
+            );
+        } else {
+            return (
+                <NotFound />
+            );
+        }
+    }
 
     if (movies) {
         return (
             <div>
-            <h1 className='text-center mt-5'>{capitalizedGenre2(genre)}</h1>
-            {movie_mapper()}
+                <h1 className='text-center mt-5'>{capitalizedGenre2(genre)}</h1>
+                {movie_mapper()}
             </div>
         );
     } else {
-        return(
+        return (
             <Loading />
         )
     }

@@ -56,6 +56,11 @@ export default class Data {
     return movieList;
   }
 
+  async getMovieById(id) {
+    const movie = await this.api(`movies/${id}`, 'GET');
+    return movie;
+  }
+
   async search(query) {
     const movieList = await this.api(`movies/search/${query}`, 'GET');
     return movieList;

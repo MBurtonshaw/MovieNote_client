@@ -6,8 +6,8 @@ import Loading from '../components/Loading';
 
 function Login() {
     const { user, actions } = useContext(UserContext);
-    const [ loginUser, setLoginUser ] = useState('');
-    const [ loginPassword, setLoginPassword ] = useState('');
+    const [loginUser, setLoginUser] = useState('');
+    const [loginPassword, setLoginPassword] = useState('');
     const navigate = useNavigate();
 
     function handleUsernameChange(event) {
@@ -29,7 +29,7 @@ function Login() {
         }
     }
 
-    return(
+    return (
         <div>
             <h1>Login</h1>
             <label htmlFor='username'>Username:</label>

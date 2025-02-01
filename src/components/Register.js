@@ -11,7 +11,7 @@ function Register() {
     const navigate = useNavigate();
 
     function handleSubmit() {
-        if (!registrationUser.trim() || !registrationPassword.trim() || !confirmedPassword.trim() ) {
+        if (!registrationUser.trim() || !registrationPassword.trim() || !confirmedPassword.trim()) {
             setError("All fields are required.");
             return;
         }
@@ -25,7 +25,7 @@ function Register() {
         actions.registerUser({
             username: registrationUser.trim(),
             password: registrationPassword.trim(),
-            confirmPassword: confirmedPassword.trim(),  
+            confirmPassword: confirmedPassword.trim(),
             role: 'USER',
         });
 
@@ -65,7 +65,7 @@ function Register() {
                 onChange={(e) => setConfirmedPassword(e.target.value)}
             />
 
-            <button onClick={handleSubmit} disabled={!registrationUser || !registrationPassword || !confirmedPassword }>
+            <button onClick={handleSubmit} disabled={!registrationUser || !registrationPassword || !confirmedPassword}>
                 Register
             </button>
         </div>

@@ -32,6 +32,11 @@ code {
   margin-left: 0.5em;
 }
 
+.nonchalant {
+  text-decoration: none;
+  color: black;
+}
+
 #navbar_large h5,
 #navbar_large input,
 .nav_button_div_large {

@@ -16,7 +16,7 @@ function TopRated() {
         if (movies) {
             return (
                 movies.map((movie, i) => {
-                    return <h5 key={i} >{movie.title}</h5>
+                    return <h5 key={i} ><a href={`/title/${movie.id}`}>{movie.title}</a></h5>
                 })
             );
         } else {

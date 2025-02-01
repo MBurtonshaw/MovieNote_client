@@ -12,7 +12,7 @@ function Logout() {
         actions.logoutUser();
         navigate('/');
     }
-    return(
+    return (
         <button onClick={handleLogout}>Logout</button>
     );
 

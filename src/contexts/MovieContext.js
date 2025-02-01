@@ -12,7 +12,7 @@ export const MovieProvider = ({ children }) => {
     try {
       const moviesList = await data.getNowPlaying();
       setMovies(moviesList);
-      setError(null); 
+      setError(null);
     } catch (error) {
       console.error("Error fetching current movies:", error);
       setError(error.message || "Failed to load movies.");
@@ -23,7 +23,7 @@ export const MovieProvider = ({ children }) => {
     try {
       const moviesList = await data.getComingSoon();
       setMovies(moviesList);
-      setError(null); 
+      setError(null);
     } catch (error) {
       console.error("Error fetching upcoming movies:", error);
       setError(error.message || "Failed to load movies.");
@@ -34,7 +34,7 @@ export const MovieProvider = ({ children }) => {
     try {
       const moviesList = await data.getMoviesByGenre(genre);
       setMovies(moviesList);
-      setError(null); 
+      setError(null);
     } catch (error) {
       console.error("Error fetching upcoming movies:", error);
       setError(error.message || "Failed to load movies.");
@@ -45,10 +45,21 @@ export const MovieProvider = ({ children }) => {
     try {
       const moviesList = await data.getTopRated();
       setMovies(moviesList);
-      setError(null); 
+      setError(null);
     } catch (error) {
       console.error("Error fetching upcoming movies:", error);
       setError(error.message || "Failed to load movies.");
+    }
+  };
+
+  const getMovieById = async (id) => {
+    try {
+      const movie = await data.getMovieById(id);
+      setMovies(movie);
+      setError(null);
+    } catch (error) {
+      console.error("Error fetching movie:", error);
+      setError(error.message || "Failed to load movie.");
     }
   };
 
@@ -56,7 +67,7 @@ export const MovieProvider = ({ children }) => {
     try {
       const moviesList = await data.search(query);
       setMovies(moviesList);
-      setError(null); 
+      setError(null);
     } catch (error) {
       console.error("Error fetching upcoming movies:", error);
       setError(error.message || "Failed to load movies.");
@@ -65,19 +76,20 @@ export const MovieProvider = ({ children }) => {
 
   function capitalizeFirstLetter(val) {
     return String(val).charAt(0).toUpperCase() + String(val).slice(1);
-}
+  }
 
 
   const value = {
     movies,
     error,
     actions: {
-        getNowPlaying,
-        getComingSoon,
-        capitalizeFirstLetter,
-        getMoviesByGenre,
-        getTopRated,
-        searchMovies
+      getNowPlaying,
+      getComingSoon,
+      capitalizeFirstLetter,
+      getMoviesByGenre,
+      getTopRated,
+      searchMovies,
+      getMovieById
     }
   };
 
