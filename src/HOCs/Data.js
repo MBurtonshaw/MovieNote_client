@@ -61,4 +61,14 @@ export default class Data {
     return movieList;
   }
 
+  //register user
+  async registerUser(user) {
+    return await this.api('register', "POST", user);
+  }
+
+  //login user
+  async loginUser(user) {
+    return await this.api(`login`, "POST", user);
+  }
+
 }

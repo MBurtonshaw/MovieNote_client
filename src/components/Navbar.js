@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ScreenContext } from '../contexts/ScreenContext.js';
 import { UserContext } from '../contexts/UserContext.js';
 import { MovieContext } from '../contexts/MovieContext.js';
+import NotFound from '../components/NotFound';
 
 function Navbar() {
     const [size, setSize] = useState(null);
@@ -38,8 +39,12 @@ function Navbar() {
 
     // Function to execute the search
     function execute_search(query) {
-        actions.searchMovies(query);
-        navigate(`/search/${query}`);
+        if (query !== '' && query !== undefined) {
+            actions.searchMovies(query);
+            navigate(`/search/${query}`);
+        } else {
+            window.alert('Please enter a search query');
+        }
     }
 
     if (size === 'large') {

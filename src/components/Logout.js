@@ -2,16 +2,19 @@ import { useState, useEffect, useContext } from "react";
 import { UserContext } from "../contexts/UserContext.js";
 import NotFound from '../components/NotFound';
 import Loading from '../components/Loading';
+import { useNavigate } from 'react-router-dom';
 
 function Logout() {
-    const { user, actions } = useContext(MovieContext);
+    const { user, actions } = useContext(UserContext);
+    const navigate = useNavigate();
 
-    // useEffect(() => {
-    //     if (!movies) { // Ensures we only fetch if movies haven't been loaded
-    //         actions.getNowPlaying();
-    //     }
-    // }, [movies, actions]);
-
+    function handleLogout() {
+        actions.logoutUser();
+        navigate('/');
+    }
+    return(
+        <button onClick={handleLogout}>Logout</button>
+    );
 
 
 }
